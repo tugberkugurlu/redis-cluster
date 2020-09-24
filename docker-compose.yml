@@ -1,0 +1,72 @@
+version: "3"
+services:
+  redis_1:
+    image: redis:5
+    command: redis-server /usr/local/etc/redis/redis.conf
+    volumes:
+      - ./config/cluster-config.conf:/usr/local/etc/redis/redis.conf
+    networks:
+      redis_cluster_network:
+        ipv4_address: 172.19.197.2
+  redis_2:
+    image: redis:5
+    command: redis-server /usr/local/etc/redis/redis.conf
+    volumes:
+      - ./config/cluster-config.conf:/usr/local/etc/redis/redis.conf
+    networks:
+      redis_cluster_network:
+        ipv4_address: 172.19.197.3
+  redis_3:
+    image: redis:5
+    command: redis-server /usr/local/etc/redis/redis.conf
+    volumes:
+      - ./config/cluster-config.conf:/usr/local/etc/redis/redis.conf
+    networks:
+      redis_cluster_network:
+        ipv4_address: 172.19.197.4
+  redis_4:
+    image: redis:5
+    command: redis-server /usr/local/etc/redis/redis.conf
+    volumes:
+      - ./config/cluster-config.conf:/usr/local/etc/redis/redis.conf
+    networks:
+      redis_cluster_network:
+        ipv4_address: 172.19.197.5
+  redis_5:
+    image: redis:5
+    command: redis-server /usr/local/etc/redis/redis.conf
+    volumes:
+      - ./config/cluster-config.conf:/usr/local/etc/redis/redis.conf
+    networks:
+      redis_cluster_network:
+        ipv4_address: 172.19.197.6
+  redis_6:
+    image: redis:5
+    command: redis-server /usr/local/etc/redis/redis.conf
+    volumes:
+      - ./config/cluster-config.conf:/usr/local/etc/redis/redis.conf
+    networks:
+      redis_cluster_network:
+        ipv4_address: 172.19.197.7
+
+  cluster_initializer:
+    build:
+      context: ./initializer
+      dockerfile: ./initializer.dockerfile
+    depends_on:
+      - redis_1
+      - redis_2
+      - redis_3
+      - redis_4
+      - redis_5
+      - redis_6
+    networks:
+      - redis_cluster_network
+
+networks:
+  redis_cluster_network:
+    driver_opts:
+      com.docker.network.enable_ipv6: "false"
+    ipam:
+      config:
+      - subnet: 172.19.197.1/24
