@@ -76,3 +76,23 @@ fe7614ba29ebca31b6a3d516db0095d17874f98c 172.19.197.4:6379@16379 master - 0 1600
 a41e5b33bb6c05a7977010e8b07aab1d7f67b836 172.19.197.5:6379@16379 slave 8e6d45810bef8253ed4ba4736a43f18756f0b559 0 1600976918000 4 connected
 f21e37724ea99d411e7ae003f4f866f7257265aa 172.19.197.3:6379@16379 master - 0 1600976917000 2 connected 5461-10922
 ```
+
+## Prometheus Metrics and Grafana Visualization
+
+`docker-compose up` also wires up the integration between Redis instances and Prometheus which allows us to collect metrics. This is achieved through [redis_exporter](https://github.com/oliver006/redis_exporter).
+
+Besides Prometheus integration, `docker-compose up` also brings up a Grafana instance up and running, which you can further configure to visualize the data collected by prometheus so that we can have a better understanding on the impact of having a cluster setup while testing out a few scenarios locally. You can achieve this by following the steps below:
+
+ - Navigate to `http://localhost:3000/`, and login. You should use `admin` for both username and password.
+ - Add Prometheus as the data source by navigating to `http://localhost:3000/datasources`. You should use `http://prometheus:9090` as the URL of Prometheus instance.
+ - You can navigate to `http://localhost:3000/dashboard/import` to import [a pre-configured Redis dashboard](https://grafana.com/grafana/dashboards/763). Type `763` as the dashboard id to import it.
+
+
+Once you are done with these steps, you can now see the dashboard:
+
+![](./.images/screencapture-localhost-3000-d-NrFM77KMz-redis-dashboard-for-prometheus-redis-exporter-1-x-2020-09-25-13_11_45.png)
+
+
+## Resources
+
+ - [Monitoring Docker container metrics using cAdvisor](https://prometheus.io/docs/guides/cadvisor/)

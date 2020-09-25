@@ -63,6 +63,48 @@ services:
     networks:
       - redis_cluster_network
 
+  prometheus:
+    image: prom/prometheus
+    volumes:
+      - ./config:/etc/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+    ports:
+      - 9090:9090
+    depends_on:
+      - redis_1
+      - redis_2
+      - redis_3
+      - redis_4
+      - redis_5
+      - redis_6
+      - redis_exporter
+    networks:
+      - redis_cluster_network
+  grafana:
+    image: grafana/grafana
+    ports:
+      - 3000:3000
+    depends_on:
+      - prometheus
+    networks:
+      - redis_cluster_network
+  redis_exporter:
+    image: oliver006/redis_exporter
+    ports:
+      - 9121:9121
+    depends_on:
+      - redis_1
+      - redis_2
+      - redis_3
+      - redis_4
+      - redis_5
+      - redis_6
+    command:
+      - '--redis.addr='
+    networks:
+      - redis_cluster_network
+
 networks:
   redis_cluster_network:
     driver_opts:
