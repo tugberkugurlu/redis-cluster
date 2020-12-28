@@ -1,6 +1,6 @@
 # Redis Cluster Local Setup
 
-This repo has various resources on redis cluster. If you are like me, and wants to cut BS as much as possible, please head to my blog post on Redis Cluster fundamentals, the official redis-cluster spec, and tutorial:
+This repo has various resources on redis cluster. If you want to learn more about Redis Cluster, you can head to my blog post on Redis Cluster fundamentals, the official redis-cluster spec, and tutorial:
 
  - [Redis Cluster - Benefits of Sharding and How It Works](https://www.tugberkugurlu.com/archive/redis-cluster-benefits-of-sharding-and-how-it-works) (requires 🥃 )
  - [Redis Cluster Specification](https://redis.io/topics/cluster-spec) (requires 🍷 )
