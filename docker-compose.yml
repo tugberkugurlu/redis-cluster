@@ -82,7 +82,7 @@ services:
     networks:
       - redis_cluster_network
   grafana:
-    image: grafana/grafana
+    build: ./grafana
     ports:
       - 3000:3000
     depends_on:
