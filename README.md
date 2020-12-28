@@ -148,3 +148,4 @@ Once you are done with these steps, you can now see the dashboard:
  - [How To Change The Default Docker Subnet](https://support.zenoss.com/hc/en-us/articles/203582809-How-to-Change-the-Default-Docker-Subnet)
  - [Communication between multiple docker-compose projects](https://stackoverflow.com/a/38089080/463785)
     - Also see "[Use a pre-existing network](https://docs.docker.com/compose/networking/#use-a-pre-existing-network)"
+ - [Initializing Grafana with preconfigured dashboards](https://ops.tips/blog/initialize-grafana-with-preconfigured-dashboards/)
