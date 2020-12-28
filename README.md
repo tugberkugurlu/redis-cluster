@@ -1,13 +1,22 @@
 # Redis Cluster
 
-This repo has various resources on redis cluster. If you are like me, and wants to cut BS as much as possible, please head to the official redis-cluster spec, and tutorial:
+This repo has various resources on redis cluster. If you are like me, and wants to cut BS as much as possible, please head to my blog post on Redis Cluster fundamentals, the official redis-cluster spec, and tutorial:
 
- - [Redis Cluster Specification](https://redis.io/topics/cluster-spec) (requires 🍷)
- - [Redis Cluster Tutorial](https://redis.io/topics/cluster-tutorial) (requires 💻)
+ - [Redis Cluster - Benefits of Sharding and How It Works](https://www.tugberkugurlu.com/archive/redis-cluster-benefits-of-sharding-and-how-it-works) (requires 🥃 )
+ - [Redis Cluster Specification](https://redis.io/topics/cluster-spec) (requires 🍷 )
+ - [Redis Cluster Tutorial](https://redis.io/topics/cluster-tutorial) (requires 💻 )
 
 ## Running Redis Cluster
 
 You can run a Redis cluster locally with the help of Docker, which will help you create a deterministic environment. This repo comes with a pre-built setup to do just that, just run the following command to get up and running:
+
+> ⚠️ Note that [the Redis Cluster doesn't support hostnames](https://github.com/redis/redis/issues/2565#issuecomment-99227165). Therefore, the each node needs to know the IP addresses of the other nodes within the cluster. In order to make this work deterministically, the setup inside this repo creates a network with a dedicated subnet of `172.19.197.1/24`, and assigns static IP addresses for the redis containers within this IP Address range. This ensures that nodes can connect between each other as well as ensuring that the Redis cluster nodes stay with the same (i.e. changing the IP address of a node will make Redis see that node as a new node).
+>
+> If this subnet is in use within your setup, or [you have changed the default Docker subnet](https://support.zenoss.com/hc/en-us/articles/203582809-How-to-Change-the-Default-Docker-Subnet), you need to change the following places accordingly to make the Redis clustering setup work properly:
+>
+> - Change the subnet of the network named `redis_cluster_network` inside the `./docker-compose.yml` file.
+> - Change the `ipv4_address` value of the `redis_*` containers inside the `./docker-compose.yml` file, ensuring that each container gets a unique IP address within the new subnet range you have assigned.
+> - Change the IP addresses listed inside the `./initializer/setup-cluster.sh` accordingly by matching them with the IP addresses you have assigned to each Redis container as part of the step above.
 
 ```bash
 docker-compose up
@@ -96,3 +105,5 @@ Once you are done with these steps, you can now see the dashboard:
 ## Resources
 
  - [Monitoring Docker container metrics using cAdvisor](https://prometheus.io/docs/guides/cadvisor/)
+ - [IPv4 Private Address Space and Filtering](https://www.arin.net/reference/research/statistics/address_filters/)
+ - [How To Change The Default Docker Subnet](https://support.zenoss.com/hc/en-us/articles/203582809-How-to-Change-the-Default-Docker-Subnet)
