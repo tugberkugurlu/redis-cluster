@@ -22,7 +22,7 @@ You can run a Redis cluster locally with the help of Docker, which will help you
 docker-compose up
 ```
 
-![](./images/redis-cluster-local-example.gif)
+![](./.images/redis-cluster-local-example.gif)
 
 ### How Initializer Works
 
