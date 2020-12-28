@@ -1,4 +1,4 @@
-# Redis Cluster
+# Redis Cluster Local Setup
 
 This repo has various resources on redis cluster. If you are like me, and wants to cut BS as much as possible, please head to my blog post on Redis Cluster fundamentals, the official redis-cluster spec, and tutorial:
 
