@@ -89,6 +89,29 @@ services:
       - prometheus
     networks:
       - redis_cluster_network
+  cadvisor:
+    image: gcr.io/google-containers/cadvisor
+    container_name: cadvisor
+    privileged: true
+    devices:
+      - /dev/kmsg
+    ports:
+      - 8080:8080
+    volumes:
+      - /:/rootfs:ro
+      - /var/run:/var/run:ro
+      - /sys:/sys:ro
+      - /var/lib/docker/:/var/lib/docker:ro
+      - /dev/disk/:/dev/disk:ro
+    depends_on:
+      - redis_1
+      - redis_2
+      - redis_3
+      - redis_4
+      - redis_5
+      - redis_6
+    networks:
+      - redis_cluster_network
   redis_exporter:
     image: oliver006/redis_exporter
     ports:
