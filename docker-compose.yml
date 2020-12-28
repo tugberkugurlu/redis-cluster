@@ -32,9 +32,7 @@ services:
         ipv4_address: 172.19.197.7
 
   cluster_initializer:
-    build:
-      context: ./initializer
-      dockerfile: ./initializer.dockerfile
+    build: ./redis-cluster-initializer
     depends_on:
       - redis_1
       - redis_2
