@@ -22,6 +22,8 @@ You can run a Redis cluster locally with the help of Docker, which will help you
 docker-compose up
 ```
 
+![](./images/redis-cluster-local-example.gif)
+
 ### How Initializer Works
 
 The initializer logic you can see under `./initializer` folder in this repository wires up the redis node together. It has the hardcoded list of
