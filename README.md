@@ -130,14 +130,9 @@ basic-client_redis_client_1_1 exited with code 0
 
 `docker-compose up` also wires up the integration between Redis instances and Prometheus which allows us to collect metrics. This is achieved through [redis_exporter](https://github.com/oliver006/redis_exporter).
 
-Besides Prometheus integration, `docker-compose up` also brings up a Grafana instance up and running, which you can further configure to visualize the data collected by prometheus so that we can have a better understanding on the impact of having a cluster setup while testing out a few scenarios locally. You can achieve this by following the steps below:
+Besides Prometheus integration, `docker-compose up` also brings up a Grafana instance up and running, which you can further configure to visualize the data collected by prometheus so that we can have a better understanding on the impact of having a cluster setup while testing out a few scenarios locally.
 
- - Navigate to `http://localhost:3000/`, and login. You should use `admin` for both username and password.
- - Add Prometheus as the data source by navigating to `http://localhost:3000/datasources`. You should use `http://prometheus:9090` as the URL of Prometheus instance.
- - You can navigate to `http://localhost:3000/dashboard/import` to import [a pre-configured Redis dashboard](https://grafana.com/grafana/dashboards/763). Type `763` as the dashboard id to import it.
-
-
-Once you are done with these steps, you can now see the dashboard:
+Once you are fully up and running after executing `docker-compose up`, you can now see pre-configured Redis dashboard as shown below:
 
 ![](./.images/screencapture-localhost-3000-d-NrFM77KMz-redis-dashboard-for-prometheus-redis-exporter-1-x-2020-09-25-13_11_45.png)
 
