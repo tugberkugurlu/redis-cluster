@@ -34,10 +34,3 @@ scrape_configs:
     static_configs:
       - targets:
         - redis_exporter:9121
-
-  # https://prometheus.io/docs/guides/cadvisor/
-  - job_name: cadvisor
-    scrape_interval: 5s
-    static_configs:
-      - targets:
-        - cadvisor:8080
