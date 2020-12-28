@@ -1,0 +1,10 @@
+version: "3"
+services:
+  redis_client_1:
+    image: redis:5
+    command: redis-cli -c -h redis_1 cluster nodes
+    networks:
+      - redis-cluster_redis_cluster_network
+networks:
+  redis-cluster_redis_cluster_network:
+    external: true
