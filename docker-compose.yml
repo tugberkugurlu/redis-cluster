@@ -64,11 +64,7 @@ services:
       - redis_cluster_network
 
   prometheus:
-    image: prom/prometheus
-    volumes:
-      - ./config:/etc/prometheus
-    command:
-      - '--config.file=/etc/prometheus/prometheus.yml'
+    build: ./prometheus
     ports:
       - 9090:9090
     depends_on:
